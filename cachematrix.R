@@ -3,7 +3,9 @@
 
 setwd("/home/malte/Git/ProgrammingAssignment2")
 
-## Write a short comment describing this function
+# This function creates a list of closures which are used later to store values of
+# the inverse as well as set and retrieve it again at later times
+# retrieving is done by calling the function from the list created using this factory
 
 makeCacheMatrix <- function(x = matrix()) {
     i <- NULL
@@ -18,9 +20,10 @@ makeCacheMatrix <- function(x = matrix()) {
                  getinverse = getinverse)
 }
 
-
-## Write a short comment describing this function
-
+# This function retrieves the cached inverse from the closure in makeCacheMatrix
+# If that i is defined as NULL, as done for a freshly created matrix, it uses
+# the solve function to calculate the inverse of the matrix and then stores it
+# in the closure of makeCacheMatrix
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
     i <- x$getinverse()
@@ -36,4 +39,5 @@ cacheSolve <- function(x, ...) {
 
 # Tests
 matrix <- makeCacheMatrix(matrix(1:4, 2, 2))
+cacheSolve(matrix)
 cacheSolve(matrix)
